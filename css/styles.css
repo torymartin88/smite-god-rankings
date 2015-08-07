@@ -1,0 +1,127 @@
+html {
+	box-sizing: border-box;
+	height: 100%;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+.row {
+	margin-top: 0.5rem !important;
+	max-width: 105.5em;
+}
+
+.row .row {
+	margin: 0 -.5em;
+}
+
+body {
+	font-family: 'open sans', Helvetica, Arial, sans-serif;
+	color: #484848;
+	background: #f0f0f0;
+	height: 100%;
+}
+
+h1 {
+	margin-left: 1rem;
+	line-height: 100px;
+	font-weight: 100;
+}
+
+
+header {
+	background-color: #434343;
+    height: 100px;
+    color: white;
+}
+
+	header h1 {
+		margin-top: 0;
+	    margin-bottom: 0;
+	}
+
+	header .row {
+		margin-top: 0 !important;
+	}
+
+
+
+.main {
+	margin-bottom: 2rem;
+}
+
+.god-icons {
+	font-size: 0;
+	background: #ffffff;
+	padding: 0.5rem 1rem 1rem 1rem;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.10);
+}
+
+.god-icons.over {
+	background: #F6F6F6;
+}
+
+.god-icon {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-size: contain;
+	border: 1px solid #6B6B6B;
+	margin: 1px;
+	-webkit-transition: transform 200ms;
+	transition: transform 200ms;
+
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;          /* Likely future */  
+}
+
+.god-icon.offscreen {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.god-icon.dragger {
+	border: 2px solid #AC2F2F;
+    transform: scale(0.7);
+}
+
+.god-icon.empty {
+	position: relative;
+	border: 2px dashed #777777;
+    border-radius: 10px;
+}
+
+.god-icon.empty:before {
+	content: '+';
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.title {
+	font-size: 1.2rem;
+    line-height: 1.5;
+    border-bottom: 1px solid #EEEEEE;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    pointer-events: none;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;          /* Likely future */  
+}
+
+footer {
+	background-color: #434343;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+}
