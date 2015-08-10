@@ -113,6 +113,8 @@ function loadFromCache() {
 				document.getElementById(i + 1).appendChild(emptyNode.cloneNode(true));
 			}
 		});
+
+		document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?a=' + window.btoa(JSON.stringify(godsListCache));
 	}
 }
 
@@ -231,11 +233,11 @@ var godIconEvents = {
 	},
 
 	mouseOver: function(e) {
-		console.log('over');
+		// console.log('over');
 	},
 
 	mouseOut: function(e) {
-		console.log('out');
+		// console.log('out');
 	},
 };
 
@@ -342,12 +344,13 @@ function moveGod(group) {
 		group.removeChild(group.getElementsByClassName("empty")[0]);
 	}
 
-	if (lastActiveGroup == null)
-		lastActiveGroup = activeGroup;
+	lastActiveGroup = dragSrcEl.parentNode.id;
+	// activeGroup = group;
 
 	// Remove old god position from cache list
 	if (lastActiveGroup != 'all'){
 		var indexToRemove = godsListCache[lastActiveGroup - 1].indexOf(dragSrcEl.id);
+
 		godsListCache[lastActiveGroup - 1].splice(indexToRemove, 1);
 
 		// decrement old group
@@ -383,8 +386,8 @@ function moveGod(group) {
 	}
 
 	localStorage.setItem('godsListCache', JSON.stringify(godsListCache));
-
-	document.getElementById('publish_id').value = 'http://localhost:8000/index.html?a=' + window.btoa(JSON.stringify(godsListCache));
+	console.log(godsListCache);
+	document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?a=' + window.btoa(JSON.stringify(godsListCache));
 
 	// increment new group
 	godsList[activeGroup - 1]++;
@@ -425,8 +428,8 @@ function moveGods(group, elements) {
 	});
 
 	localStorage.setItem('godsListCache', JSON.stringify(godsListCache));
-
-	document.getElementById('publish_id').value = 'http://localhost:8000/index.html?a=' + window.btoa(JSON.stringify(godsListCache));
+	console.log(godsListCache);
+	document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?a=' + window.btoa(JSON.stringify(godsListCache));
 
 	// Remove empty icons
 	if (group.getElementsByClassName("empty").length)
@@ -514,6 +517,11 @@ function addEventListeners() {
 		[].forEach.call(selected_links, function(link) {
 			link.classList.remove('show');
 		});
+	}, false);
+
+	document.getElementById('js--reset-page').addEventListener('click', function() {
+		localStorage.removeItem('godsListCache');
+		window.location.href = 'http://smitegodrankings.com/index.html';
 	}, false);
 }
 
