@@ -13,16 +13,14 @@
 </head>
 
 <body>
-<!-- 	<header>
-		<div class="row">
-			<h1>SmiteGodRankings.com :)</h1>
-		</div>
-	</header> -->
-
 	<div class="main">
 		<div class="bin">
 			<img class="smite_logo" src="img/smite_logo.png" />
 			<h1>God Rankings</h1>
+			<p>1. <strong>Drag</strong> icons to rows on the right</br>
+			   2. <strong>Click</strong> to select <i>multiple</i>, then click 'add' on a row to move them all.</br>
+			   3. <strong>Share</strong> the link below the list to let others view your rankings!
+			</p>
 			<div class="row">
 				<div class="god-icons god-row" id="all">
 					<div class="title">Gods</div>
@@ -105,13 +103,17 @@
 				</div>
 			</div>
 
-			<a class="button">Publish</a>
-			<input type="text" id="publish_id" value="" placeholder="publish id here"/>
+			<a class="button" id="js--reset-page">Reset</a>
+
+			<div class="publish-row">
+				<label>Link to this list:</label>
+				<input type="text" id="publish_id" value="" placeholder="Share link will show here"/>
+			</div>
 		</div>
 	</div>
 
 	<footer>
-		<span>Built with love by Tory Martin.</span>
+		<span>Built with love by Tory Martin (ign: feedception)</span>
 	</footer>
 
  	<script src="js/scripts.js"></script>
