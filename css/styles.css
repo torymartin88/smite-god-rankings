@@ -21,6 +21,7 @@ body {
 	background: #f0f0f0;
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -90,7 +91,7 @@ input[type='text']:focus {
 	border: 1px solid #236887;
 }
 
-.button[disabled='true'] {
+.button[disabled] {
 	opacity: 0.5;
 }
 
@@ -112,6 +113,41 @@ input[type='text']:focus {
 	border-color: #8E1F47;
 }
 
+.button-group {
+	margin: 0 auto;
+	width: 205px;
+}
+
+.button-group .button {
+	float: left;
+	margin-left: 5px;
+}
+
+.button-group .button:first-child {
+	margin-left: 0;
+}
+
+.button-group + p {
+	clear: both;
+}
+
+.i-menu {
+	position: absolute;
+    right: 0px;
+    top: 47px;
+    font-size: 22px;
+    display: block;
+    height: 40px;
+    width: 50px;
+    line-height: 37px;
+    text-align: center;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.i-menu:hover {
+	opacity: 1;
+}
 
 .smite_logo {
 	width: 200px;
@@ -134,15 +170,15 @@ input[type='text']:focus {
 
 
 .main {
-	/*height: calc(100vh - 50px);*/
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
-	padding-left: 320px;
+	padding-left: 295px;
+	/*transition: padding 250ms;*/
 }
 
 .bin {
-	width: 310px;
+	width: 295px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -152,6 +188,11 @@ input[type='text']:focus {
     color: #fff;
     padding-top: 2rem;
     overflow-y: auto;
+    transition: transform 200ms;
+}
+
+.bin .bin-content {
+	transition: transform 300ms;
 }
 
 .bin .god-icons {
@@ -168,9 +209,22 @@ input[type='text']:focus {
 	color: #469FC5;
 }
 
+.bin .god-search {
+	width: 100%;
+    margin-bottom: 6px;
+    border: 1px solid #598CA2;
+    background-color: transparent;
+}
+
+.bin .god-search:focus {
+	 border: 1px solid #FFFFFF;
+	 box-shadow: none;
+}
+
 .empty-row {
 	font-size: 14px;
     text-align: center;
+    margin-top: 5px;
 }
 
 .empty-row.hide {
@@ -191,6 +245,31 @@ input[type='text']:focus {
 	width: 100%;
 	padding: 10px;
 	flex: 1;
+}
+
+.main.collapse {
+	padding-left: 50px;
+}
+
+.main.collapse .bin {
+	cursor: pointer;
+}
+
+.main.collapse .bin:hover {
+	background: #335A6B;
+}
+
+.main.collapse .bin:hover .i-menu {
+	opacity: 1;
+}
+
+.main.collapse .bin {
+	transform: translateX(-245px);
+	overflow: hidden;
+}
+
+.main.collapse .bin .bin-content {
+	transform: translateX(-35px);
 }
 
 .god-icons {
@@ -244,6 +323,10 @@ input[type='text']:focus {
 	position: relative;
 	border: 2px dashed #777777;
     border-radius: 10px;
+}
+
+.god-icon.hide {
+	display: none;
 }
 
 .god-icon.empty:before {

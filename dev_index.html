@@ -10,9 +10,10 @@
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="css/vendor/normalize.css?v=1.0">
-	<link rel="stylesheet" href="css/vendor/foundation.min.css?v=1.0">
-	<link rel="stylesheet" href="css/styles.min.css?v=0.2">
+	<link rel="stylesheet" href="css/vendor/normalize.css">
+	<link rel="stylesheet" href="css/vendor/foundation.min.css">
+	<link rel="stylesheet" href="css/font.css">
+	<link rel="stylesheet" href="css/styles.min.css">
 
 	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 </head>
@@ -20,17 +21,21 @@
 <body>
 	<div class="main">
 		<div class="bin">
-			<img width="200" height="62" class="smite_logo" src="img/smite_logo.png" />
-			<h1>God Rankings</h1>
-			<p>1. <strong>Drag</strong> icons to rows on the right</br>
-			   2. <strong>Click</strong> to select <i>multiple</i>, then click 'add' on a row to move them all.</br>
-			   3. <strong>Share</strong> the link below the list to let others view your rankings!
-			</p>
-			<div class="row">
-				<div class="god-icons god-row" id="all">
-					<div class="title">Gods</div>
-					<span class="add-selected js--deselect-all" id="js--deselect-all">Deselect All</span>
-					<div class="empty-row hide" id="js--no-gods-left">No gods left</div>
+			<i class="i-menu" id="js--menu-trigger"></i>
+			<div class="bin-content">
+				<img width="200" height="62" class="smite_logo" src="img/smite_logo.png" />
+				<h1>God Rankings</h1>
+				<p>1. <strong>Drag</strong> icons to rows on the right</br>
+				   2. <strong>Click</strong> to select <i>multiple</i>, then click 'add' on a row to move them all.</br>
+				   3. <strong>Share</strong> the link below the list to let others view your rankings!
+				</p>
+				<div class="row">
+					<div class="god-icons god-row" id="all">
+						<div class="title">Gods</div>
+						<input type="text" class="god-search" id="js--search-gods" placeholder="Search for gods or classes here..."/>
+						<span class="add-selected js--deselect-all" id="js--deselect-all">Deselect All</span>
+						<div class="empty-row hide" id="js--no-gods-left">No gods</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -108,13 +113,15 @@
 				</div>
 			</div>
 
-			<button class="button negative" id="js--reset-page">Reset</button>
-			<button class="button" id="js--publish" disabled="true">Publish</button>
+			<div class="button-group">
+				<button class="button negative" id="js--reset-page">Reset</button>
+				<button class="button" id="js--publish" disabled="true">Publish</button>
+			</div>
 			<p class="text-center">You can only publish when you've ranked all gods or when you've altered a published list.</p>
 
 			<div class="publish-row">
 				<label>Link to this list:</label>
-				<input type="text" id="publish_id" value="" placeholder="Share link will show here"/>
+				<input type="text" id="publish_id" value="" placeholder="Share link will show here when published."/>
 			</div>
 		</div>
 
