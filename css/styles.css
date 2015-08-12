@@ -57,9 +57,13 @@ input[type='text']:focus {
     box-shadow: 0px 0px 1px #84B4C9;
 }
 
+.text-center {
+	text-align: center;
+}
+
 .button {
 	color: #fff;
-	line-height: 30px;
+	line-height: 25px;
     background-color: #348CB3;
     border: 1px solid #3D809E;
     display: block;
@@ -86,6 +90,29 @@ input[type='text']:focus {
 	border: 1px solid #236887;
 }
 
+.button[disabled='true'] {
+	opacity: 0.5;
+}
+
+.button.negative {
+	background-color: #CF2A66;
+	border-color: #A2204F;
+}
+
+.button.negative:hover {
+	background-color: #E03070;
+}
+
+.button.negative:focus {
+	border-color: #751A3B;
+}
+
+.button.negative:active {
+	background-color: #B7255A;
+	border-color: #8E1F47;
+}
+
+
 .smite_logo {
 	width: 200px;
     margin: 0 auto;
@@ -107,7 +134,11 @@ input[type='text']:focus {
 
 
 .main {
-	height: calc(100vh - 50px);
+	/*height: calc(100vh - 50px);*/
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	padding-left: 320px;
 }
 
 .bin {
@@ -116,6 +147,7 @@ input[type='text']:focus {
     z-index: 1;
     top: 0;
     bottom: 0;
+    left: 0;
     background-color: #2B4956;
     color: #fff;
     padding-top: 2rem;
@@ -141,6 +173,10 @@ input[type='text']:focus {
     text-align: center;
 }
 
+.empty-row.hide {
+	display: none;
+}
+
 .publish-row {
 	width: 50%;
 	margin: 0 auto;
@@ -154,7 +190,7 @@ input[type='text']:focus {
 .tier-list {
 	width: 100%;
 	padding: 10px;
-	padding-left: 320px;
+	flex: 1;
 }
 
 .god-icons {
@@ -245,7 +281,6 @@ footer {
     text-align: center;
     height: 50px;
     line-height: 48px;
-    padding-left: 310px;
 }
 
 footer span {

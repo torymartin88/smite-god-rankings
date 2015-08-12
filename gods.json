@@ -2,336 +2,477 @@
   {
     "id":"Agni",
     "name":"Agni",
-    "filename":"Agni.jpg"
+    "filename":"Agni.jpg",
+    "type":"Mage",
+    "short_id":"1"
   },
   {
     "id":"Ah_Muzen_Cab",
     "name":"Ah Muzen Cab",
-    "filename":"Ah Muzen Cab.jpg"
+    "filename":"Ah Muzen Cab.jpg",
+    "type":"Hunter",
+    "short_id":"2"
   },
   {
     "id":"Ah_Puch",
     "name":"Ah Puch",
-    "filename":"Ah Puch.jpg"
+    "filename":"Ah Puch.jpg",
+    "type":"Mage",
+    "short_id":"3"
   },
   {
     "id":"Anhur",
     "name":"Anhur",
-    "filename":"Anhur.jpg"
+    "filename":"Anhur.jpg",
+    "type":"Hunter",
+    "short_id":"4"
   },
   {
     "id":"Anubis",
     "name":"Anubis",
-    "filename":"Anubis.jpg"
+    "filename":"Anubis.jpg",
+    "type":"Mage",
+    "short_id":"5"
   },
   {
     "id":"AoKuang",
     "name":"AoKuang",
-    "filename":"AoKuang.jpg"
+    "filename":"AoKuang.jpg",
+    "type":"Mage",
+    "short_id":"6"
   },
   {
     "id":"Aphrodite",
     "name":"Aphrodite",
-    "filename":"Aphrodite.jpg"
+    "filename":"Aphrodite.jpg",
+    "type":"Mage",
+    "short_id":"7"
   },
   {
     "id":"Apollo",
     "name":"Apollo",
-    "filename":"Apollo.jpg"
+    "filename":"Apollo.jpg",
+    "type":"Hunter",
+    "short_id":"8"
   },
   {
     "id":"Arachne",
     "name":"Arachne",
-    "filename":"Arachne.jpg"
+    "filename":"Arachne.jpg",
+    "type":"Assassin",
+    "short_id":"9"
   },
   {
     "id":"Ares",
     "name":"Ares",
-    "filename":"Ares.jpg"
+    "filename":"Ares.jpg",
+    "type":"Guardian",
+    "short_id":"10"
   },
   {
     "id":"Artemis",
     "name":"Artemis",
-    "filename":"Artemis.jpg"
+    "filename":"Artemis.jpg",
+    "type":"Hunter",
+    "short_id":"11"
   },
   {
     "id":"Athena",
     "name":"Athena",
-    "filename":"Athena.jpg"
+    "filename":"Athena.jpg",
+    "type":"Guardian",
+    "short_id":"12"
   },
   {
     "id":"Awilix",
     "name":"Awilix",
-    "filename":"Awilix.jpg"
+    "filename":"Awilix.jpg",
+    "type":"Assassin",
+    "short_id":"13"
   },
   {
     "id":"Bacchus",
     "name":"Bacchus",
-    "filename":"Bacchus.jpg"
+    "filename":"Bacchus.jpg",
+    "type":"Guardian",
+    "short_id":"14"
   },
   {
     "id":"Bakasura",
     "name":"Bakasura",
-    "filename":"Bakasura.jpg"
+    "filename":"Bakasura.jpg",
+    "type":"Assassin",
+    "short_id":"15"
   },
   {
     "id":"Bastet",
     "name":"Bastet",
-    "filename":"Bastet.jpg"
+    "filename":"Bastet.jpg",
+    "type":"Assassin",
+    "short_id":"16"
   },
   {
     "id":"Bellona",
     "name":"Bellona",
-    "filename":"Bellona.jpg"
+    "filename":"Bellona.jpg",
+    "type":"Warrior",
+    "short_id":"17"
   },
   {
     "id":"Cabrakan",
     "name":"Cabrakan",
-    "filename":"Cabrakan.jpg"
+    "filename":"Cabrakan.jpg",
+    "type":"Guardian",
+    "short_id":"18"
   },
   {
     "id":"Chaac",
     "name":"Chaac",
-    "filename":"Chaac.jpg"
+    "filename":"Chaac.jpg",
+    "type":"Warrior",
+    "short_id":"19"
   },
   {
     "id":"Change",
     "name":"Chang'E",
-    "filename":"Change.jpg"
+    "filename":"Change.jpg",
+    "type":"Mage",
+    "short_id":"20"
   },
   {
     "id":"Chronos",
     "name":"Chronos",
-    "filename":"Chronos.jpg"
+    "filename":"Chronos.jpg",
+    "type":"Mage",
+    "short_id":"21"
   },
   {
     "id":"Cupid",
     "name":"Cupid",
-    "filename":"Cupid.jpg"
+    "filename":"Cupid.jpg",
+    "type":"Hunter",
+    "short_id":"22"
   },
   {
     "id":"Fenrir",
     "name":"Fenrir",
-    "filename":"Fenrir.jpg"
+    "filename":"Fenrir.jpg",
+    "type":"Assassin",
+    "short_id":"23"
   },
   {
     "id":"Freya",
     "name":"Freya",
-    "filename":"Freya.jpg"
+    "filename":"Freya.jpg",
+    "type":"Mage",
+    "short_id":"24"
   },
   {
     "id":"Geb",
     "name":"Geb",
-    "filename":"Geb.jpg"
+    "filename":"Geb.jpg",
+    "type":"Guardian",
+    "short_id":"25"
   },
   {
     "id":"Guan_Yu",
     "name":"Guan Yu",
-    "filename":"Guan Yu.jpg"
+    "filename":"Guan Yu.jpg",
+    "type":"Warrior",
+    "short_id":"26"
   },
   {
     "id":"Hades",
     "name":"Hades",
-    "filename":"Hades.jpg"
+    "filename":"Hades.jpg",
+    "type":"Guardian",
+    "short_id":"27"
   },
   {
     "id":"He_Bo",
     "name":"He Bo",
-    "filename":"He Bo.jpg"
+    "filename":"He Bo.jpg",
+    "type":"Mage",
+    "short_id":"28"
   },
   {
     "id":"Hel",
     "name":"Hel",
-    "filename":"Hel.jpg"
+    "filename":"Hel.jpg",
+    "type":"Mage",
+    "short_id":"29"
   },
   {
     "id":"Hercules",
     "name":"Hercules",
-    "filename":"Hercules.jpg"
+    "filename":"Hercules.jpg",
+    "type":"Warrior",
+    "short_id":"30"
   },
   {
     "id":"Hou_Yi",
     "name":"Hou Yi",
-    "filename":"Hou Yi.jpg"
+    "filename":"Hou Yi.jpg",
+    "type":"Hunter",
+    "short_id":"31"
   },
   {
     "id":"Hun_Batz",
     "name":"Hun Batz",
-    "filename":"Hun Batz.jpg"
+    "filename":"Hun Batz.jpg",
+    "type":"Assassin",
+    "short_id":"32"
   },
   {
     "id":"Isis",
     "name":"Isis",
-    "filename":"Isis.jpg"
+    "filename":"Isis.jpg",
+    "type":"Mage",
+    "short_id":"33"
   },
   {
     "id":"Janus",
     "name":"Janus",
-    "filename":"Janus.jpg"
+    "filename":"Janus.jpg",
+    "type":"Mage",
+    "short_id":"34"
   },
   {
     "id":"Kali",
     "name":"Kali",
-    "filename":"Kali.jpg"
+    "filename":"Kali.jpg",
+    "type":"Assassin",
+    "short_id":"35"
   },
   {
     "id":"Khepri",
     "name":"Khepri",
-    "filename":"Khepri.jpg"
+    "filename":"Khepri.jpg",
+    "type":"Guardian",
+    "short_id":"36"
   },
   {
     "id":"Kukulkan",
     "name":"Kukulkan",
-    "filename":"Kukulkan.jpg"
+    "filename":"Kukulkan.jpg",
+    "type":"Mage",
+    "short_id":"37"
   },
   {
     "id":"Kumbhakarna",
     "name":"Kumbhakarna",
-    "filename":"Kumbhakarna.jpg"
+    "filename":"Kumbhakarna.jpg",
+    "type":"Guardian",
+    "short_id":"38"
   },
   {
     "id":"Loki",
     "name":"Loki",
-    "filename":"Loki.jpg"
+    "filename":"Loki.jpg",
+    "type":"Assassin",
+    "short_id":"39"
   },
   {
     "id":"Medusa",
     "name":"Medusa",
-    "filename":"Medusa.jpg"
+    "filename":"Medusa.jpg",
+    "type":"Hunter",
+    "short_id":"40"
   },
   {
     "id":"Mercury",
     "name":"Mercury",
-    "filename":"Mercury.jpg"
+    "filename":"Mercury.jpg",
+    "type":"Assassin",
+    "short_id":"41"
   },
   {
     "id":"Ne_Zha",
     "name":"Ne Zha",
-    "filename":"Ne Zha.jpg"
+    "filename":"Ne Zha.jpg",
+    "type":"Assassin",
+    "short_id":"42"
   },
   {
     "id":"Neith",
     "name":"Neith",
-    "filename":"Neith.jpg"
+    "filename":"Neith.jpg",
+    "type":"Hunter",
+    "short_id":"43"
   },
   {
     "id":"Nemesis",
     "name":"Nemesis",
-    "filename":"Nemesis.jpg"
+    "filename":"Nemesis.jpg",
+    "type":"Assassin",
+    "short_id":"44"
   },
   {
     "id":"Nox",
     "name":"Nox",
-    "filename":"Nox.jpg"
+    "filename":"Nox.jpg",
+    "type":"Mage",
+    "short_id":"45"
   },
   {
     "id":"Nu_Wa",
     "name":"Nu Wa",
-    "filename":"Nu Wa.jpg"
+    "filename":"Nu Wa.jpg",
+    "type":"Mage",
+    "short_id":"46"
   },
   {
     "id":"Odin",
     "name":"Odin",
-    "filename":"Odin.jpg"
+    "filename":"Odin.jpg",
+    "type":"Warrior",
+    "short_id":"47"
   },
   {
     "id":"Osiris",
     "name":"Osiris",
-    "filename":"Osiris.jpg"
+    "filename":"Osiris.jpg",
+    "type":"Warrior",
+    "short_id":"48"
   },
   {
     "id":"Poseidon",
     "name":"Poseidon",
-    "filename":"Poseidon.jpg"
+    "filename":"Poseidon.jpg",
+    "type":"Mage",
+    "short_id":"49"
   },
   {
     "id":"Ra",
     "name":"Ra",
-    "filename":"Ra.jpg"
+    "filename":"Ra.jpg",
+    "type":"Mage",
+    "short_id":"50"
   },
   {
     "id":"Rama",
     "name":"Rama",
-    "filename":"Rama.jpg"
+    "filename":"Rama.jpg",
+    "type":"Hunter",
+    "short_id":"51"
   },
   {
     "id":"Ratatoskr",
     "name":"Ratatoskr",
-    "filename":"Ratatoskr.jpg"
+    "filename":"Ratatoskr.jpg",
+    "type":"Assassin",
+    "short_id":"52"
+  },
+  {
+    "id":"Ravana",
+    "name":"Ravana",
+    "filename":"Ravana.jpg",
+    "type":"Warrior",
+    "short_id":"53"
   },
   {
     "id":"Scylla",
     "name":"Scylla",
-    "filename":"Scylla.jpg"
+    "filename":"Scylla.jpg",
+    "type":"Mage",
+    "short_id":"54"
   },
   {
     "id":"Serqet",
     "name":"Serqet",
-    "filename":"Serqet.jpg"
+    "filename":"Serqet.jpg",
+    "type":"Assassin",
+    "short_id":"55"
   },
   {
     "id":"Sobek",
     "name":"Sobek",
-    "filename":"Sobek.jpg"
+    "filename":"Sobek.jpg",
+    "type":"Guardian",
+    "short_id":"56"
   },
   {
     "id":"Sun_Wukong",
     "name":"Sun Wukong",
-    "filename":"Sun Wukong.jpg"
+    "filename":"Sun Wukong.jpg",
+    "type":"Warrior",
+    "short_id":"57"
   },
   {
     "id":"Sylvanus",
     "name":"Sylvanus",
-    "filename":"Sylvanus.jpg"
+    "filename":"Sylvanus.jpg",
+    "type":"Guardian",
+    "short_id":"58"
   },
   {
     "id":"Thanatos",
     "name":"Thanatos",
-    "filename":"Thanatos.jpg"
+    "filename":"Thanatos.jpg",
+    "type":"Assassin",
+    "short_id":"59"
   },
   {
     "id":"Thor",
     "name":"Thor",
-    "filename":"Thor.jpg"
+    "filename":"Thor.jpg",
+    "type":"Assassin",
+    "short_id":"60"
   },
   {
     "id":"Tyr",
     "name":"Tyr",
-    "filename":"Tyr.jpg"
+    "filename":"Tyr.jpg",
+    "type":"Warrior",
+    "short_id":"61"
   },
   {
     "id":"Ullr",
     "name":"Ullr",
-    "filename":"Ullr.jpg"
+    "filename":"Ullr.jpg",
+    "type":"Hunter",
+    "short_id":"62"
   },
   {
     "id":"Vamana",
     "name":"Vamana",
-    "filename":"Vamana.jpg"
+    "filename":"Vamana.jpg",
+    "type":"Warrior",
+    "short_id":"63"
   },
   {
     "id":"Vulcan",
     "name":"Vulcan",
-    "filename":"Vulcan.jpg"
+    "filename":"Vulcan.jpg",
+    "type":"Mage",
+    "short_id":"64"
   },
   {
     "id":"Xbalanque",
     "name":"Xbalanque",
-    "filename":"Xbalanque.jpg"
+    "filename":"Xbalanque.jpg",
+    "type":"Hunter",
+    "short_id":"65"
   },
   {
     "id":"Ymir",
     "name":"Ymir",
-    "filename":"Ymir.jpg"
+    "filename":"Ymir.jpg",
+    "type":"Guardian",
+    "short_id":"66"
   },
   {
     "id":"Zeus",
     "name":"Zeus",
-    "filename":"Zeus.jpg"
+    "filename":"Zeus.jpg",
+    "type":"Mage",
+    "short_id":"67"
   },
   {
     "id":"Zhong_Kui",
     "name":"Zhong Kui",
-    "filename":"Zhong Kui.jpg"
+    "filename":"Zhong Kui.jpg",
+    "type":"Mage",
+    "short_id":"68"
   }
 ]

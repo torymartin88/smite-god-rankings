@@ -1,5 +1,10 @@
 
 
+// Firebase Setup
+var firebaseCache = new Firebase("https://smite-god-rankings.firebaseio.com/");
+var firebaseListCache = firebaseCache.child('lists')
+// firebaseListCache.push({name: 'test', list: [['1', '2'],['3', '4'],['7']]});
+
 // Globals
 var rows, groups, cols;
 
@@ -39,14 +44,20 @@ request.onload = function() {
 
     var godsList = document.getElementById('all');
 
+    var fragment = document.createDocumentFragment();
+
     [].forEach.call(data, function(god) {
     	var godNode = document.createElement('div');
 		godNode.classList.add('god-icon');
 		godNode.style.backgroundImage = "url('god_icons/" + god.filename + "')";
 		godNode.id = god.id;
+		godNode.setAttribute('data-short-id', god.short_id);
+		godNode.setAttribute('data-type', god.type);
 		godNode.draggable = true;
-    	godsList.appendChild(godNode);
+    	fragment.appendChild(godNode);
 	});
+
+	godsList.appendChild(fragment);
 
 	addEventListeners();
 	loadFromCache();
@@ -65,56 +76,73 @@ request.send();
 
 // loads previous gods from localStorage
 function loadFromCache() {
-	var queryStr = getParameterByName('a');
+	var queryStr = getParameterByName('key');
 	var localStore = localStorage.getItem('godsListCache', godsListCache);
-	console.log(queryStr);
 
 	var temp = null;
 	var loadedFromQueryString = false;
 
 	if (queryStr) {
 		try {
-			temp = JSON.parse(window.atob(queryStr));
-			console.log(temp);
-			loadedFromQueryString = true;
-			// var encoded = window.btoa(JSON.stringify(godsListCache));
-			// var unencoded = window.atob(encoded);
-			// console.log(encoded);
-			// console.log(unencoded);
+			firebaseListCache.child(queryStr).once('value', function(snapshot) {
+				temp = snapshot.val().list;
+
+				for (var key in temp) {
+				   	if (temp.hasOwnProperty(key)) {
+				       	var obj = temp[key];
+				        for (var prop in obj) {
+				        	if(obj.hasOwnProperty(prop)){
+				        		godsListCache[parseInt(key)].push(obj[prop]);
+				        		godsList[parseInt(key)]++;
+				        		var group = document.getElementById(parseInt(key) + 1);
+				        		group.appendChild(document.getElementById(obj[prop]));
+				          	}
+				       	}
+				    }
+				}
+
+				for (var i in godsListCache) {
+					if (godsListCache[i].length == 0)
+						document.getElementById(parseInt(i) + 1).appendChild(emptyNode.cloneNode(true));
+				}
+
+				document.getElementById('js--no-gods-left').classList.remove('hide');
+			});
 		} catch (err) {
 			console.log(err);
 			alert('This god list is invalid. Please check that you copied the whole link!');
 		}
-	} else if (localStorage) {
+	} else if (localStore != null) {
 		try {
-			temp = JSON.parse(localStore);
+			godsListCache = JSON.parse(localStore);
+
+			[].forEach.call(godsListCache, function(group, i) {
+				if (group.length != 0) {
+					[].forEach.call(group, function(god, j) {
+						document.getElementById(i + 1).appendChild(document.getElementById(god));
+					});
+					godsList[i] = group.length;
+				} else {
+					document.getElementById(i + 1).appendChild(emptyNode.cloneNode(true));
+				}
+			});
+
+			if (document.getElementById('all').getElementsByClassName('god-icon').length == 0) {
+				document.getElementById('js--publish').removeAttribute('disabled');
+				document.getElementById('js--no-gods-left').classList.remove('hide');
+			}
 		} catch (err) {
 			console.log(err);
 			alert('Error with cached values!');
+			localStorage.removeItem('godsListCache');
 		}
-	}
-
-	if (temp == null) {
+	} else {
 		var groupsList = document.getElementsByClassName('god-icons');
 
     	[].forEach.call(groupsList, function(group) {
-    		group.appendChild(emptyNode.cloneNode(true));
+    		if (group.id != 'all')
+    			group.appendChild(emptyNode.cloneNode(true));
     	});
-	} else if (temp != null) {
-		godsListCache = temp;
-		[].forEach.call(godsListCache, function(group, i) {
-			console.log(group);
-			if (group.length != 0) {
-				[].forEach.call(group, function(god, j) {
-					document.getElementById(i + 1).appendChild(document.getElementById(god));
-				});
-				godsList[i] = group.length;
-			} else {
-				document.getElementById(i + 1).appendChild(emptyNode.cloneNode(true));
-			}
-		});
-
-		document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?a=' + window.btoa(JSON.stringify(godsListCache));
 	}
 }
 
@@ -131,8 +159,10 @@ var godIconEvents = {
 
 		this.classList.add('dragger');
 
+		e.dataTransfer.setData('god_id', this.id);
 		e.dataTransfer.effectAllowed = 'move';
-		e.dataTransfer.setDragImage(this, 0, 0);
+		// e.dataTransfer.setDragImage(this, 0, 0);
+		return true;
 	},
 
 	dragOver: function(e) {
@@ -184,11 +214,14 @@ var godIconEvents = {
 
 		if (columns && dragEnterSrcEl.parentNode.id != 'all')
 			equalHeightColumns(columns);
+
+		return false;
 	},
 
 	dragLeave: function(e) {
 
 		dragEnterSrcEl.classList.remove('over');
+		return false;
 	},
 
 	dragDrop: function(e) {
@@ -209,6 +242,8 @@ var godIconEvents = {
 		});
 
 		dragSrcEl.classList.remove('dragger');
+
+		return false;
 	},
 
 	click: function(e) {
@@ -264,6 +299,8 @@ var godRowEvents = {
 
 		if (lastActiveRow == null)
 			lastActiveRow = activeRow;
+
+		return false;
 	}
 };
 
@@ -298,10 +335,12 @@ var godGroupEvents = {
 			document.getElementById(activeGroup).classList.remove('over');
 		}
 
+		return false;
 	},
 
 	dragLeave: function(e) {
 		// Drag Leave
+		return false;
 	},
 
 	// Handle all dropping at this level
@@ -325,8 +364,9 @@ var godGroupEvents = {
 	},
 
 	click: function(e) {
+		console.log(e);
 		// if clicking on group, but not on a god-icon
-		if (!e.srcElement.classList.contains('god-icon')) {
+		if (!e.target.classList.contains('god-icon')) {
 
 			// Get selected god icons
 			var elements = document.getElementsByClassName('selected');
@@ -334,6 +374,17 @@ var godGroupEvents = {
 			if (elements.length != 0)
 				moveGods(this, elements);
 		}
+	}
+};
+
+
+var titleEvents = {
+	dragOver: function(e) {
+		if (e.preventDefault) {
+			e.preventDefault();
+		}
+
+		return false;
 	}
 };
 
@@ -386,8 +437,6 @@ function moveGod(group) {
 	}
 
 	localStorage.setItem('godsListCache', JSON.stringify(godsListCache));
-	console.log(godsListCache);
-	document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?a=' + window.btoa(JSON.stringify(godsListCache));
 
 	// increment new group
 	godsList[activeGroup - 1]++;
@@ -400,6 +449,13 @@ function moveGod(group) {
 	group.classList.remove('over');
 
 	lastActiveGroup = group.id;
+
+	setTimeout(function() {
+		if (document.getElementById('all').getElementsByClassName('god-icon').length == 0){
+			document.getElementById('js--publish').removeAttribute('disabled');
+			document.getElementById('js--no-gods-left').classList.remove('hide');
+		}
+	}, 50);
 
 	return 0;
 }
@@ -428,8 +484,6 @@ function moveGods(group, elements) {
 	});
 
 	localStorage.setItem('godsListCache', JSON.stringify(godsListCache));
-	console.log(godsListCache);
-	document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?a=' + window.btoa(JSON.stringify(godsListCache));
 
 	// Remove empty icons
 	if (group.getElementsByClassName("empty").length)
@@ -441,21 +495,16 @@ function moveGods(group, elements) {
 		link.classList.remove('show');
 	});
 
+	setTimeout(function() {
+		if (document.getElementById('all').getElementsByClassName('god-icon').length == 0) {
+			document.getElementById('js--publish').removeAttribute('disabled');
+			document.getElementById('js--no-gods-left').classList.remove('hide');
+		}
+	}, 50);
+
 	return 0;
 }
 
-
-
-
-var titleEvents = {
-	dragOver: function(e) {
-		if (e.preventDefault) {
-			e.preventDefault();
-		}
-
-		return false;
-	}
-};
 
 
 function equalHeightColumns(columns) {
@@ -523,6 +572,11 @@ function addEventListeners() {
 		localStorage.removeItem('godsListCache');
 		window.location.href = 'http://smitegodrankings.com/index.html';
 	}, false);
+
+	document.getElementById('js--publish').addEventListener('click', function() {
+		var key = firebaseListCache.push({name: 'test', created: Firebase.ServerValue.TIMESTAMP, list: godsListCache}).key();
+		document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?key=' + key;
+	}, false);
 }
 
 
@@ -543,58 +597,4 @@ function getParameterByName(name) {
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-
-// LZW-compress a string
-function lzw_encode(s) {
-    var dict = {};
-    var data = (s + "").split("");
-    var out = [];
-    var currChar;
-    var phrase = data[0];
-    var code = 256;
-    for (var i=1; i<data.length; i++) {
-        currChar=data[i];
-        if (dict[phrase + currChar] != null) {
-            phrase += currChar;
-        }
-        else {
-            out.push(phrase.length > 1 ? dict[phrase] : phrase.charCodeAt(0));
-            dict[phrase + currChar] = code;
-            code++;
-            phrase=currChar;
-        }
-    }
-    out.push(phrase.length > 1 ? dict[phrase] : phrase.charCodeAt(0));
-    for (var i=0; i<out.length; i++) {
-        out[i] = String.fromCharCode(out[i]);
-    }
-    return out.join("");
-}
-
-// Decompress an LZW-encoded string
-function lzw_decode(s) {
-    var dict = {};
-    var data = (s + "").split("");
-    var currChar = data[0];
-    var oldPhrase = currChar;
-    var out = [currChar];
-    var code = 256;
-    var phrase;
-    for (var i=1; i<data.length; i++) {
-        var currCode = data[i].charCodeAt(0);
-        if (currCode < 256) {
-            phrase = data[i];
-        }
-        else {
-           phrase = dict[currCode] ? dict[currCode] : (oldPhrase + currChar);
-        }
-        out.push(phrase);
-        currChar = phrase.charAt(0);
-        dict[code] = oldPhrase + currChar;
-        code++;
-        oldPhrase = phrase;
-    }
-    return out.join("");
 }
