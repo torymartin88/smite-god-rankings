@@ -364,7 +364,6 @@ var godGroupEvents = {
 	},
 
 	click: function(e) {
-		console.log(e);
 		// if clicking on group, but not on a god-icon
 		if (!e.target.classList.contains('god-icon')) {
 
@@ -577,6 +576,51 @@ function addEventListeners() {
 		var key = firebaseListCache.push({name: 'test', created: Firebase.ServerValue.TIMESTAMP, list: godsListCache}).key();
 		document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?key=' + key;
 	}, false);
+
+	document.getElementById('js--search-gods').addEventListener('keyup', function(e) {
+
+		var icons = document.getElementById('all').getElementsByClassName('god-icon');
+		var searchTerm = this.value.toLowerCase().replace(/\s+/g, '');;
+
+		var hiddenIcons = 0;
+
+		[].forEach.call(icons, function(icon) {
+			if (icon.id.toLowerCase().replace(/\s+/g, '').indexOf(searchTerm) == -1 && icon.getAttribute('data-type').toLowerCase().replace(/\s+/g, '').indexOf(searchTerm) == -1) {
+				icon.classList.add('hide');
+				hiddenIcons++;
+			} else {
+				icon.classList.remove('hide');
+			}
+		});
+
+		if (hiddenIcons == 58)
+			document.getElementById('js--no-gods-left').classList.remove('hide');
+		else
+			document.getElementById('js--no-gods-left').classList.add('hide');
+	}, false);
+
+	document.getElementById('js--menu-trigger').addEventListener('click', menuTriggerClick, false);
+
+}
+
+function menuTriggerClick(e) {
+	var parent = this.parentNode.parentNode;
+	parent.classList.add('collapse');
+
+	setTimeout(function() {
+		parent.addEventListener('click', sidebarClick, false);
+		this.removeEventListener('click', menuTriggerClick);
+	}, 10);
+}
+
+function sidebarClick(e) {
+	var me = this;
+	me.classList.remove('collapse');
+
+	setTimeout(function() {
+		document.getElementById('js--menu-trigger').addEventListener('click', menuTriggerClick, false);
+		me.removeEventListener('click', sidebarClick);
+	}, 10);
 }
 
 

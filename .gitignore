@@ -1,10 +1,7 @@
 # Logs
 logs
 *.log
-<<<<<<< HEAD
-=======
 npm-debug.log*
->>>>>>> Added gitignore and removed node_modules
 
 # Runtime data
 pids
@@ -27,10 +24,5 @@ coverage
 build/Release
 
 # Dependency directory
-<<<<<<< HEAD
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules
-=======
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
->>>>>>> Added gitignore and removed node_modules
