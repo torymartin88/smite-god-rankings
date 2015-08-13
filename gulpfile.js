@@ -6,6 +6,7 @@ var gulp        = require('gulp'),
     minifyHTML  = require('gulp-minify-html'),
     bump        = require('gulp-bump'),
     tagVersion  = require('gulp-tag-version'),
+    replace     = require('gulp-replace'),
     filter      = require('gulp-filter'),
     git         = require('gulp-git'),
     rename      = require('gulp-rename'),
@@ -51,13 +52,13 @@ function inc(importance) {
         // bump the version number in those files
         .pipe(bump({type: importance}))
         // save it back to filesystem
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./'))
         // commit the changed version number
-        //.pipe(git.commit('bumps package version: ' + importance))
+        .pipe(git.commit('bumps package version: ' + importance))
         // read only one file to get the version number
-        //.pipe(filter('package.json'))
+        .pipe(filter('package.json'))
         // **tag it in the repository**
-        //.pipe(tagVersion());
+        .pipe(tagVersion());
 }
 
 gulp.task('bump:patch', function () { return inc('patch'); });
