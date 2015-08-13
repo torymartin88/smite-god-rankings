@@ -4,9 +4,15 @@ var gulp        = require('gulp'),
     cssmin      = require('gulp-cssmin'),
     uglify      = require('gulp-uglify'),
     minifyHTML  = require('gulp-minify-html'),
+    bump        = require('gulp-bump'),
+    tagVersion  = require('gulp-tag-version'),
+    replace     = require('gulp-replace'),
+    filter      = require('gulp-filter'),
+    git         = require('gulp-git'),
     rename      = require('gulp-rename'),
     connect     = require('gulp-connect');
 
+/* Style Task */
 gulp.task('styles', function () {
     gulp.src('css/styles.styl')
         .pipe(stylus())
@@ -16,6 +22,7 @@ gulp.task('styles', function () {
         .pipe(connect.reload());
 });
 
+/* Script Task */
 gulp.task('scripts', function () {
     gulp.src('js/scripts.js')
         .pipe(uglify())
@@ -24,6 +31,7 @@ gulp.task('scripts', function () {
         .pipe(connect.reload());
 });
 
+/* HTML compress Task */
 gulp.task('html', function () {
     gulp.src('dev_index.html')
         .pipe(minifyHTML())
@@ -32,6 +40,7 @@ gulp.task('html', function () {
         .pipe(connect.reload());
 });
 
+/* Webserver Task */
 gulp.task('webserver', function() {
     connect.server({
         livereload: true
@@ -39,6 +48,29 @@ gulp.task('webserver', function() {
 });
 
 
+/* Versioning Tasks */
+
+function inc(importance) {
+    // get all the files to bump version in
+    return gulp.src('./package.json')
+        // bump the version number in those files
+        .pipe(bump({type: importance}))
+        // save it back to filesystem
+        .pipe(gulp.dest('./'))
+        // commit the changed version number
+        .pipe(git.commit('bumps package version: ' + importance))
+        // read only one file to get the version number
+        .pipe(filter('package.json'))
+        // **tag it in the repository**
+        .pipe(tagVersion());
+}
+
+gulp.task('bump:patch', function () { return inc('patch'); });
+gulp.task('bump:minor', function () { return inc('patch'); });
+gulp.task('bump:major', function () { return inc('patch'); });
+
+
+/* Watch Task */
 gulp.task('watch', function() {
     gulp.watch('css/*.styl', ['styles']);
     gulp.watch('js/*.js', ['scripts']);
