@@ -1,9 +1,8 @@
 
 
 // Firebase Setup
-// var firebaseCache = new Firebase("https://smite-god-rankings.firebaseio.com/");
-// var firebaseListCache = firebaseCache.child('lists')
-// firebaseListCache.push({name: 'test', list: [['1', '2'],['3', '4'],['7']]});
+var firebaseCache = new Firebase("https://smite-god-rankings.firebaseio.com/");
+var firebaseListCache = firebaseCache.child('lists');
 
 // Globals
 var rows, groups, cols;

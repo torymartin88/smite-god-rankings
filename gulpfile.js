@@ -12,6 +12,7 @@ var gulp        = require('gulp'),
     rename      = require('gulp-rename'),
     connect     = require('gulp-connect');
 
+/* Style Task */
 gulp.task('styles', function () {
     gulp.src('css/styles.styl')
         .pipe(stylus())
@@ -21,6 +22,7 @@ gulp.task('styles', function () {
         .pipe(connect.reload());
 });
 
+/* Script Task */
 gulp.task('scripts', function () {
     gulp.src('js/scripts.js')
         .pipe(uglify())
@@ -29,6 +31,7 @@ gulp.task('scripts', function () {
         .pipe(connect.reload());
 });
 
+/* HTML compress Task */
 gulp.task('html', function () {
     gulp.src('dev_index.html')
         .pipe(minifyHTML())
@@ -37,6 +40,7 @@ gulp.task('html', function () {
         .pipe(connect.reload());
 });
 
+/* Webserver Task */
 gulp.task('webserver', function() {
     connect.server({
         livereload: true
@@ -66,6 +70,7 @@ gulp.task('bump:minor', function () { return inc('patch'); });
 gulp.task('bump:major', function () { return inc('patch'); });
 
 
+/* Watch Task */
 gulp.task('watch', function() {
     gulp.watch('css/*.styl', ['styles']);
     gulp.watch('js/*.js', ['scripts']);
