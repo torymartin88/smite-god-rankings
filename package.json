@@ -1,6 +1,6 @@
 {
   "name": "smite_tierlist",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Smite god tier list (rankings)",
   "main": "index.js",
   "scripts": {
