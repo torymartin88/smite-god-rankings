@@ -8,7 +8,8 @@ var gulp        = require('gulp'),
     connect     = require('gulp-connect');
 
 gulp.task('styles', function () {
-    gulp.src('css/styles.css')
+    gulp.src('css/styles.styl')
+        .pipe(stylus())
         .pipe(cssmin())
         .pipe(rename('styles.min.css'))
         .pipe(gulp.dest('css/'))
@@ -39,7 +40,7 @@ gulp.task('webserver', function() {
 
 
 gulp.task('watch', function() {
-    gulp.watch('css/*.css', ['styles']);
+    gulp.watch('css/*.styl', ['styles']);
     gulp.watch('js/*.js', ['scripts']);
     gulp.watch('dev_index.html', ['html']);
 });

@@ -21,7 +21,7 @@
 <body>
 	<div class="main">
 		<div class="bin">
-			<i class="i-menu" id="js--menu-trigger"></i>
+			<i class="i-menu menu-trigger" id="js--menu-trigger"></i>
 			<div class="bin-content">
 				<img width="200" height="62" class="smite_logo" src="img/smite_logo.png" />
 				<h1>God Rankings</h1>
@@ -29,89 +29,79 @@
 				   2. <strong>Click</strong> to select <i>multiple</i>, then click 'add' on a row to move them all.</br>
 				   3. <strong>Share</strong> the link below the list to let others view your rankings!
 				</p>
-				<div class="row">
-					<div class="god-icons god-row" id="all">
-						<div class="title">Gods</div>
-						<input type="text" class="god-search" id="js--search-gods" placeholder="Search for gods or classes here..."/>
-						<span class="add-selected js--deselect-all" id="js--deselect-all">Deselect All</span>
-						<div class="empty-row hide" id="js--no-gods-left">No gods</div>
-					</div>
+				<div class="god-icons god-row" id="all">
+					<div class="title">Gods</div>
+					<input type="text" class="god-search" id="js--search-gods" placeholder="Search for gods or classes here..."/>
+					<span class="add-selected deselect-all js--deselect-all" id="js--deselect-all">Deselect All</span>
+					<div class="empty-row hide" id="js--no-gods-left">No gods</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="tier-list">
-			<div class="row god-rows" id="row_1">
-				<div class="god-icons ss-row small-4 columns" id="1">
-					<div class="title">SS</div>
-					<span class="add-selected js--add-selected">Add</span>
-				</div>
+			<div class="view-selection">
+				<span class="view-selection-item view-item-standard" id="js--view-standard">Standard</span>
+				<span class="view-selection-item view-item-compact" id="js--view-compact">Compact</span>
 
-				<div class="god-icons s-plus-row small-8 columns" id="2">
-					<div class="title">S+</div>
-					<span class="add-selected js--add-selected">Add</span>
+				<div class="actions">
+					<input type="checkbox" id="js--colors-cb" />
+					<label for="js--colors-cb">Colors</label>
 				</div>
 			</div>
 
 			<div class="row">
+				<div class="god-icons ss-row" id="1">
+					<div class="title">SS</div>
+					<span class="add-selected js--add-selected">Add</span>
+				</div>
+				<div class="god-icons s-plus-row" id="2">
+					<div class="title">S+</div>
+					<span class="add-selected js--add-selected">Add</span>
+				</div>
 				<div class="god-icons s-row" id="3">
 					<div class="title">S</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
-			</div>
-
-			<div class="row god-rows" id="row_2">
-				<div class="god-icons s-minus-row small-6 columns" id="4">
+				<div class="god-icons s-minus-row" id="4">
 					<div class="title">S-</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
-				<div class="god-icons a-plus-row small-6 columns" id="5">
+				<div class="god-icons a-plus-row" id="5">
 					<div class="title">A+</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
-			</div>
-
-			<div class="row">
 				<div class="god-icons a-row" id="6">
 					<div class="title">A</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="god-icons a-minus-row small-6 columns" id="7">
+				<div class="god-icons a-minus-row" id="7">
 					<div class="title">A-</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
-				<div class="god-icons b-plus-row small-6 columns" id="8">
+				<div class="god-icons b-plus-row" id="8">
 					<div class="title">B+</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
-			</div>
-
-			<div class="row">
 				<div class="god-icons b-row" id="9">
 					<div class="title">B</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
-			</div>
-
-			<div class="row god-rows" id="row_3">
-				<div class="god-icons c-row small-5 columns" id="10">
+				<div class="god-icons c-row" id="10">
 					<div class="title">C</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
 
-				<div class="god-icons d-row small-5 columns" id="11">
+				<div class="god-icons d-row" id="11">
 					<div class="title">D</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
 
-				<div class="god-icons new-row small-2 columns" id="12">
+				<div class="god-icons new-row" id="12">
 					<div class="title">New</div>
 					<span class="add-selected js--add-selected">Add</span>
 				</div>
 			</div>
+
 
 			<div class="button-group">
 				<button class="button negative" id="js--reset-page">Reset</button>

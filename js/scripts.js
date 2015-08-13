@@ -1,8 +1,8 @@
 
 
 // Firebase Setup
-var firebaseCache = new Firebase("https://smite-god-rankings.firebaseio.com/");
-var firebaseListCache = firebaseCache.child('lists')
+// var firebaseCache = new Firebase("https://smite-god-rankings.firebaseio.com/");
+// var firebaseListCache = firebaseCache.child('lists')
 // firebaseListCache.push({name: 'test', list: [['1', '2'],['3', '4'],['7']]});
 
 // Globals
@@ -16,6 +16,8 @@ var lastActiveGroup = null;
 var activeRow = null;
 var lastActiveRow = null;
 var godsList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+var iconHalfWidth = 25;
 
 var godsListCache = [[], [], [], [], [], [], [], [], [], [], [], []];
 
@@ -59,6 +61,7 @@ request.onload = function() {
 
 	godsList.appendChild(fragment);
 
+	setDefaults();
 	addEventListeners();
 	loadFromCache();
   } else {
@@ -106,6 +109,8 @@ function loadFromCache() {
 						document.getElementById(parseInt(i) + 1).appendChild(emptyNode.cloneNode(true));
 				}
 
+				equalHeightColumns();
+
 				document.getElementById('js--no-gods-left').classList.remove('hide');
 			});
 		} catch (err) {
@@ -131,6 +136,8 @@ function loadFromCache() {
 				document.getElementById('js--publish').removeAttribute('disabled');
 				document.getElementById('js--no-gods-left').classList.remove('hide');
 			}
+
+			equalHeightColumns();
 		} catch (err) {
 			console.log(err);
 			alert('Error with cached values!');
@@ -168,12 +175,12 @@ var godIconEvents = {
 	dragOver: function(e) {
 
 		if ( activeGroup != 'all' && dragSrcEl != this ) {
-			if (e.offsetX < 25 && leftSide == false) {
+			if (e.offsetX < iconHalfWidth && leftSide == false) {
 				leftSide = true;
 
 				if (godsList[activeGroup - 1] != 0)
 					document.getElementById(this.parentNode.id).insertBefore(hoverNode, this);
-			} else if (e.offsetX >= 25 && leftSide == true) {
+			} else if (e.offsetX >= iconHalfWidth && leftSide == true) {
 				leftSide = false;
 
 				if (godsList[activeGroup - 1] != 0)
@@ -193,11 +200,8 @@ var godIconEvents = {
 	dragEnter: function(e) {
 		dragEnterSrcEl = this;
 
-		var columns = null;
-		columns = dragEnterSrcEl.parentNode.parentNode.getElementsByClassName('god-icons');
-
 		if ( activeGroup != 'all' && dragSrcEl != dragEnterSrcEl ) {
-			if (e.offsetX < 25) {
+			if (e.offsetX < iconHalfWidth) {
 				leftSide = true;
 
 				if (godsList[activeGroup - 1] != 0)
@@ -212,8 +216,7 @@ var godIconEvents = {
 			dragEnterSrcEl.classList.add('over');
 		}
 
-		if (columns && dragEnterSrcEl.parentNode.id != 'all')
-			equalHeightColumns(columns);
+		equalHeightColumns();
 
 		return false;
 	},
@@ -454,6 +457,7 @@ function moveGod(group) {
 			document.getElementById('js--publish').removeAttribute('disabled');
 			document.getElementById('js--no-gods-left').classList.remove('hide');
 		}
+		equalHeightColumns();
 	}, 50);
 
 	return 0;
@@ -499,6 +503,7 @@ function moveGods(group, elements) {
 			document.getElementById('js--publish').removeAttribute('disabled');
 			document.getElementById('js--no-gods-left').classList.remove('hide');
 		}
+		equalHeightColumns();
 	}, 50);
 
 	return 0;
@@ -506,19 +511,45 @@ function moveGods(group, elements) {
 
 
 
-function equalHeightColumns(columns) {
-	var height = 0;
-	[].forEach.call(columns, function(col) {
-		col.style.height = '';
+function equalHeightColumns() {
+	if (document.getElementsByClassName('tier-list')[0].classList.contains('view-standard')) {
+		columns = document.getElementsByClassName('god-icons');
+		[].forEach.call(columns, function(col) {
+			col.style.height = '';
+		});
 
-		if (col.clientHeight > height)
-			height = col.clientHeight;
-	});
+		// SS and S+
+		if (columns[1].clientHeight > columns[2].clientHeight)
+			columns[2].style.height = columns[1].clientHeight + 'px';
+		else
+			columns[1].style.height = columns[2].clientHeight + 'px';
 
-	[].forEach.call(columns, function(col) {
-		if (height > 150)
-			col.style.height = height + 'px';
-	});
+		// S- and A+
+		if (columns[4].clientHeight > columns[5].clientHeight)
+			columns[5].style.height = columns[4].clientHeight + 'px';
+		else
+			columns[4].style.height = columns[5].clientHeight + 'px';
+
+		// A- and B+
+		if (columns[6].clientHeight > columns[8].clientHeight)
+			columns[8].style.height = columns[7].clientHeight + 'px';
+		else
+			columns[7].style.height = columns[8].clientHeight + 'px';
+
+		var heightRow = columns[10].clientHeight;
+
+		// C, D and NEW
+		if (columns[11].clientHeight > heightRow)
+			heightRow = columns[11].clientHeight;
+		else if (columns[12].clientHeight > heightRow)
+			heightRow = columns[12].clientHeight;
+
+
+		columns[10].style.height = heightRow + 'px';
+		columns[11].style.height = heightRow + 'px';
+		columns[12].style.height = heightRow + 'px';
+
+	}
 }
 
 
@@ -554,58 +585,85 @@ function addEventListeners() {
 	/* remove bin click listener */
 	document.getElementById('all').removeEventListener('click', godGroupEvents.click);
 
-	document.getElementById('js--deselect-all').addEventListener('click', function() {
-		// Inefficient!
-		var elements = document.getElementsByClassName('god-icon');
-		[].forEach.call(elements, function(icon) {
-			icon.classList.remove('selected');
-		});
-
-		var selected_links = document.getElementsByClassName('add-selected');
-		[].forEach.call(selected_links, function(link) {
-			link.classList.remove('show');
-		});
-	}, false);
-
-	document.getElementById('js--reset-page').addEventListener('click', function() {
-		localStorage.removeItem('godsListCache');
-		window.location.href = 'http://smitegodrankings.com/index.html';
-	}, false);
-
-	document.getElementById('js--publish').addEventListener('click', function() {
-		var key = firebaseListCache.push({name: 'test', created: Firebase.ServerValue.TIMESTAMP, list: godsListCache}).key();
-		document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?key=' + key;
-	}, false);
-
-	document.getElementById('js--search-gods').addEventListener('keyup', function(e) {
-
-		var icons = document.getElementById('all').getElementsByClassName('god-icon');
-		var searchTerm = this.value.toLowerCase().replace(/\s+/g, '');;
-
-		var hiddenIcons = 0;
-
-		[].forEach.call(icons, function(icon) {
-			if (icon.id.toLowerCase().replace(/\s+/g, '').indexOf(searchTerm) == -1 && icon.getAttribute('data-type').toLowerCase().replace(/\s+/g, '').indexOf(searchTerm) == -1) {
-				icon.classList.add('hide');
-				hiddenIcons++;
-			} else {
-				icon.classList.remove('hide');
-			}
-		});
-
-		if (hiddenIcons == 58)
-			document.getElementById('js--no-gods-left').classList.remove('hide');
-		else
-			document.getElementById('js--no-gods-left').classList.add('hide');
-	}, false);
-
+	document.getElementById('js--deselect-all').addEventListener('click', deselectIcons, false);
+	document.getElementById('js--reset-page').addEventListener('click', resetPage, false);
+	document.getElementById('js--publish').addEventListener('click', publishPage, false);
+	document.getElementById('js--search-gods').addEventListener('keyup', searchGods, false);
 	document.getElementById('js--menu-trigger').addEventListener('click', menuTriggerClick, false);
+	document.getElementById('js--view-standard').addEventListener('click', viewClick, false);
+	document.getElementById('js--view-compact').addEventListener('click', viewClick, false);
+	document.getElementById('js--colors-cb').addEventListener('change', colorsChange, false);
+}
+
+function setDefaults() {
+	var tierList = document.getElementsByClassName('tier-list')[0]
+	var colors = localStorage.getItem('smitetierlist_colors');
+
+	console.log(colors);
+	if (colors == 'true') {
+		tierList.classList.add('colors');
+		document.getElementById('js--colors-cb').setAttribute('checked', true);
+	}
+
+
+	var view = localStorage.getItem('smitetierlist_view');
+
+	if (view == 'compact')
+		tierList.classList.add('view-compact');
+	else
+		tierList.classList.add('view-standard');
 
 }
 
+function deselectIcons(e) {
+	// Inefficient!
+	var elements = document.getElementsByClassName('god-icon');
+	[].forEach.call(elements, function(icon) {
+		icon.classList.remove('selected');
+	});
+
+	var selected_links = document.getElementsByClassName('add-selected');
+	[].forEach.call(selected_links, function(link) {
+		link.classList.remove('show');
+	});
+}
+
+function resetPage(e) {
+	localStorage.removeItem('godsListCache');
+	window.location.href = 'http://smitegodrankings.com/index.html';
+}
+
+function publishPage(e) {
+	var key = firebaseListCache.push({name: 'test', created: Firebase.ServerValue.TIMESTAMP, list: godsListCache}).key();
+	document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?key=' + key;
+}
+
+function searchGods(e) {
+	var icons = document.getElementById('all').getElementsByClassName('god-icon');
+	var searchTerm = this.value.toLowerCase().replace(/\s+/g, '');;
+
+	var hiddenIcons = 0;
+
+	console.log(icons.length);
+	[].forEach.call(icons, function(icon) {
+		if (icon.id.toLowerCase().replace(/\s+/g, '').indexOf(searchTerm) == -1 && icon.getAttribute('data-type').toLowerCase().replace(/\s+/g, '').indexOf(searchTerm) == -1) {
+			icon.classList.add('hide');
+			hiddenIcons++;
+		} else {
+			icon.classList.remove('hide');
+		}
+	});
+
+	console.log
+	if (hiddenIcons == icons.length)
+		document.getElementById('js--no-gods-left').classList.remove('hide');
+	else
+		document.getElementById('js--no-gods-left').classList.add('hide');
+}
+
 function menuTriggerClick(e) {
-	var parent = this.parentNode.parentNode;
-	parent.classList.add('collapse');
+	var parent = this.parentNode;
+	parent.parentNode.classList.add('collapse');
 
 	setTimeout(function() {
 		parent.addEventListener('click', sidebarClick, false);
@@ -615,12 +673,37 @@ function menuTriggerClick(e) {
 
 function sidebarClick(e) {
 	var me = this;
-	me.classList.remove('collapse');
+	me.parentNode.classList.remove('collapse');
 
 	setTimeout(function() {
 		document.getElementById('js--menu-trigger').addEventListener('click', menuTriggerClick, false);
 		me.removeEventListener('click', sidebarClick);
 	}, 10);
+}
+
+function viewClick(e) {
+	this.parentNode.parentNode.classList.remove('view-standard');
+	this.parentNode.parentNode.classList.remove('view-compact');
+
+	if (this.id == 'js--view-standard'){
+		this.parentNode.parentNode.classList.add('view-standard');
+		iconHalfWidth = 25;
+		equalHeightColumns();
+		localStorage.setItem('smitetierlist_view', 'standard');
+	} else if (this.id == 'js--view-compact') {
+		columns = document.getElementsByClassName('god-icons');
+		[].forEach.call(columns, function(col) {
+			col.style.height = '';
+		});
+		iconHalfWidth = 20;
+		this.parentNode.parentNode.classList.add('view-compact');
+		localStorage.setItem('smitetierlist_view', 'compact');
+	}
+}
+
+function colorsChange(e) {
+	this.parentNode.parentNode.parentNode.classList.toggle('colors');
+	localStorage.setItem('smitetierlist_colors', this.parentNode.parentNode.parentNode.classList.contains('colors'));
 }
 
 
