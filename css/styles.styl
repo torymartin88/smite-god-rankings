@@ -729,10 +729,35 @@ footer {
 	clear: both;
     background-color: #E2E2E2;
     text-align: center;
-    height: 50px;
-    line-height: 48px;
+    height: 40px;
+    line-height: 37px;
 
     span {
-    	font-size: 14px;
+    	font-size: 10px;
+    	font-weight: 600;
+    	margin-left: 10px;
+
+    	a {
+    		text-decoration: none;
+    		color: $main-blue;
+
+    		&:visited {
+    			color: $main_blue;
+    		}
+
+    		&:hover {
+    			color: lighten($main_blue, 15%);
+    		}
+    	}
+
+    	i {
+			font-size: 20px;
+			position: relative;
+			top: 4px;
+    	}
+
+    	&:first-child {
+    		margin-left: 0;
+    	}
     }
 }

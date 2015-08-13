@@ -23,6 +23,45 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.i-twitter:before {
+	content: "\f099";
+}
+.i-github:before {
+	content: "\f09b";
+}
+.i-pinterest:before {
+	content: "\f0d2";
+}
+.i-pinterest-square:before {
+	content: "\f0d3";
+}
+.i-google-plus-square:before {
+	content: "\f0d4";
+}
+.i-youtube-square:before {
+	content: "\f166";
+}
+.i-youtube:before {
+	content: "\f167";
+}
+.i-behance-square:before {
+	content: "\f1b5";
+}
+.i-steam:before {
+	content: "\f1b6";
+}
+.i-steam-square:before {
+	content: "\f1b7";
+}
+.i-git-square:before {
+	content: "\f1d2";
+}
+.i-facebook-official:before {
+	content: "\f230";
+}
+.i-vimeo:before {
+	content: "\f27d";
+}
 .i-eye:before {
 	content: "\e000";
 }

@@ -6,7 +6,7 @@
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8">
 	<meta name="description" content="Smite God Rankings (Tier List) web app. This site allows you to rank the gods of Smite in tiers according to their current relative strength in the meta.">
 
-	<title>Smite God Rankings (Tier List)</title>
+	<title>Smite God Rankings (Tier List) - Rank gods with their relative meta strength</title>
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
@@ -20,14 +20,14 @@
 
 <body>
 	<div class="main">
-		<div class="bin">
+		<nav class="bin">
 			<i class="i-menu menu-trigger" id="js--menu-trigger"></i>
 			<div class="bin-content">
-				<img width="200" height="62" class="smite_logo" src="img/smite_logo.png" />
+				<a href="http://smitegame.com" target="_blank"><img width="200" height="62" class="smite_logo" src="img/smite_logo.png" alt="smite logo" /></a>
 				<h1>God Rankings</h1>
-				<p>1. <strong>Drag</strong> icons to rows on the right</br>
-				   2. <strong>Click</strong> to select <i>multiple</i>, then click 'add' on a row to move them all.</br>
-				   3. <strong>Share</strong> the link below the list to let others view your rankings!
+				<p>1. <strong>Drag</strong> icons to rows on the right to rank based on how strong you feel they are.</br>
+				   2. <strong>Click</strong> to select <i>multiple</i>, then click 'add' on a row to move all selected gods.</br>
+				   3. <strong>Share</strong> the link below the list to let others view your god ranking tier list!
 				</p>
 				<div class="god-icons god-row" id="all">
 					<div class="title">Gods</div>
@@ -36,7 +36,7 @@
 					<div class="empty-row hide" id="js--no-gods-left">No gods</div>
 				</div>
 			</div>
-		</div>
+		</nav>
 
 		<div class="tier-list">
 			<div class="view-selection">
@@ -117,6 +117,9 @@
 
 		<footer>
 			<span>Built with love by Tory Martin (ign: feedception)</span>
+			<span><a href="https://twitter.com/torymartin88" target="_blank"><i class="i-twitter"></i></a></span>
+			<span><a href="https://github.com/torymartin88/" target="_blank"><i class="i-github"></i></a></span>
+			<span>v0.4.0</span>
 		</footer>
 	</div>
 
