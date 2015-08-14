@@ -15,6 +15,7 @@ var lastActiveGroup = null;
 var activeRow = null;
 var lastActiveRow = null;
 var godsList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var scrollbarList, scrollbarBin;
 
 var iconHalfWidth = 25;
 
@@ -33,6 +34,8 @@ emptyNode.classList.add('god-icon');
 emptyNode.classList.add('empty');
 emptyNode.draggable = false;
 
+scrollbarList = tinyscrollbar(document.getElementById("scrollbarList"));
+scrollbarBin = tinyscrollbar(document.getElementById("scrollbarBin"));
 
 // Load Gods
 var request = new XMLHttpRequest();
@@ -111,6 +114,7 @@ function loadFromCache() {
 				equalHeightColumns();
 
 				document.getElementById('js--no-gods-left').classList.remove('hide');
+				document.getElementById('js--loading').classList.add('hide');
 			});
 		} catch (err) {
 			console.log(err);
@@ -137,6 +141,7 @@ function loadFromCache() {
 			}
 
 			equalHeightColumns();
+			document.getElementById('js--loading').classList.add('hide');
 		} catch (err) {
 			console.log(err);
 			alert('Error with cached values!');
@@ -149,8 +154,17 @@ function loadFromCache() {
     		if (group.id != 'all')
     			group.appendChild(emptyNode.cloneNode(true));
     	});
+    	document.getElementById('js--loading').classList.add('hide');
 	}
+
+	updateScrollBars();
 }
+
+// window.onload = function() {
+//     scrollbarList = tinyscrollbar(document.getElementById("scrollbarList"));
+//     scrollbarBin = tinyscrollbar(document.getElementById("scrollbarBin"));
+// }
+
 
 
 // Event Handlers
@@ -459,6 +473,8 @@ function moveGod(group) {
 		equalHeightColumns();
 	}, 50);
 
+	updateScrollBars();
+
 	return 0;
 }
 
@@ -505,6 +521,8 @@ function moveGods(group, elements) {
 		equalHeightColumns();
 	}, 50);
 
+	updateScrollBars();
+
 	return 0;
 }
 
@@ -547,8 +565,9 @@ function equalHeightColumns() {
 		columns[10].style.height = heightRow + 'px';
 		columns[11].style.height = heightRow + 'px';
 		columns[12].style.height = heightRow + 'px';
-
 	}
+
+	updateScrollBars();
 }
 
 
@@ -658,6 +677,8 @@ function searchGods(e) {
 		document.getElementById('js--no-gods-left').classList.remove('hide');
 	else
 		document.getElementById('js--no-gods-left').classList.add('hide');
+
+	updateScrollBars();
 }
 
 function menuTriggerClick(e) {
@@ -698,6 +719,8 @@ function viewClick(e) {
 		this.parentNode.parentNode.classList.add('view-compact');
 		localStorage.setItem('smitetierlist_view', 'compact');
 	}
+
+	updateScrollBars();
 }
 
 function colorsChange(e) {
@@ -705,7 +728,19 @@ function colorsChange(e) {
 	localStorage.setItem('smitetierlist_colors', this.parentNode.parentNode.parentNode.classList.contains('colors'));
 }
 
+function updateScrollBars() {
+	var binContentPosition = 0, listContentPosition = 0;
 
+	try {
+		binContentPosition = scrollbarBin.contentPosition;
+		listContentPosition = scrollbarList.contentPosition;
+	} catch (e) {
+		console.log(e);
+	}
+
+	scrollbarBin.update(binContentPosition);
+	scrollbarList.update(listContentPosition);
+}
 
 /* Utils */
 

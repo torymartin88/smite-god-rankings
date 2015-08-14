@@ -35,6 +35,7 @@ body {
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
 }
 
 h1 {
@@ -256,6 +257,22 @@ input[type='radio'] {
 	}
 }
 
+.loading {
+	position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    text-align: center;
+    line-height: 100vh;
+    background-color: rgba(42, 45, 49, 0.93);
+    color: white;
+
+    &.hide {
+    	display: none;
+    }
+}
 
 
 .smite_logo {
@@ -279,37 +296,40 @@ input[type='radio'] {
 
 
 .main {
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
-	padding-left: 295px;
-	/*transition: padding 250ms;*/
+	height: calc(100vh - 60px);
+	overflow: hidden;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 
 .bin {
 	width: 295px;
     position: fixed;
-    z-index: 1;
+    z-index: 5;
     top: 0;
     bottom: 0;
     left: 0;
     background-color: #2B4956;
     color: #fff;
     padding-top: 2rem;
-    overflow-y: auto;
     transition: transform 200ms;
 
 	.bin-content {
 		transition: transform 300ms;
 	}
 
-	.god-icons {
-	    overflow-y: auto;
+	.all-row {
+		width: 100%;
 	    border: none;
 	    background: none;
 	    box-shadow: none;
 	    padding: .5rem 1rem 1rem;
+	}
+
+	.god-icons-header {
+		position: relative;
+		margin-top: 10px;
 	}
 
 	.title {
@@ -320,15 +340,51 @@ input[type='radio'] {
 	}
 
 	.god-search {
-		width: 100%;
-	    margin-bottom: 6px;
-	    border: 1px solid #598CA2;
+		width: 88%;
+		display: block;
+		margin: 0 auto;
+	    border: 1px solid #386071;
 	    background-color: transparent;
 
 		&:focus {
 			 border: 1px solid #FFFFFF;
 			 box-shadow: none;
 		}
+	}
+}
+
+.scrollbarBin {
+	.viewport {
+		height: calc(100vh - 335px);
+		overflow: hidden;
+    	position: relative;
+    	margin-left: 17px;
+    	margin-top: 5px;
+	}
+
+	.overview {
+		list-style: none;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    padding: 0;
+	    margin: 0 !important;
+	}
+
+	.scrollbar {
+		width: 13px;
+	}
+
+	.track {
+		background: #213B46;
+		width: 6px;
+	}
+
+	.thumb {
+	    background: #386071;
+	    border: none;
+	    width: 6px;
+	    left: 0;
 	}
 }
 
@@ -386,33 +442,39 @@ input[type='radio'] {
 	width: 50%;
 	margin: 0 auto;
 	margin-top: 1rem;
+	margin-bottom: 1rem;
 
 	input {
 		width: 100%;
 	}
 }
 
-.main {
-	&.collapse {
-		padding-left: 50px;
+body.collapse {
+	.bin {
+		cursor: pointer;
+		transform: translateX(-245px);
+		overflow: hidden;
 
-		.bin {
-			cursor: pointer;
-			transform: translateX(-245px);
-			overflow: hidden;
+		.bin-content {
+			transform: translateX(-50px);
+		}
 
-			.bin-content {
-				transform: translateX(-40px);
-			}
+		&:hover {
+			background: #335A6B;
 
-			&:hover {
-				background: #335A6B;
-
-				.menu-trigger {
-					opacity: 1;
-				}
+			.menu-trigger {
+				opacity: 1;
 			}
 		}
+	}
+
+	.tier-list {
+		left: 60px;
+		width: calc(100% - 75px);
+	}
+	
+	footer {
+		margin-left: 50px;
 	}
 }
 
@@ -424,7 +486,8 @@ input[type='radio'] {
 	background: #ffffff;
 	padding: .2rem 0.6rem 0.6rem;
 	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.10);
-	border-radius: 3px
+	border-radius: 3px;
+	min-height: 105px;
 
 	&.over {
 		background: #F6F6F6;
@@ -507,13 +570,18 @@ input[type='radio'] {
 
 .deselect-all {
 	height: 27px;
-	line-height: 33px;
+	line-height: 26px;
+	top: -3px;
 }
 
 .tier-list {
-	width: 100%;
-	padding: 10px;
-	flex: 1;
+	width: calc(100% - 320px);
+	list-style: none;
+    position: absolute;
+    left: 305px;
+    top: 0;
+    padding: 0;
+    margin: 0;
 
 	&.colors {
 
@@ -696,6 +764,7 @@ input[type='radio'] {
 
 		.god-icons {
 			padding: 0.3rem 4rem 0.3rem 1rem;
+			min-height: 51px;
 
 			.title {
 				width: 40px;
@@ -731,6 +800,13 @@ footer {
     text-align: center;
     height: 40px;
     line-height: 37px;
+    position: relative;
+    z-index: 3;
+    margin-left: 295px;
+
+    .collapsed &  {
+    	margin-left: 40px;
+    }
 
     span {
     	font-size: 10px;
@@ -739,7 +815,7 @@ footer {
 
     	a {
     		text-decoration: none;
-    		color: $main-blue;
+    		color: $main_gulblue;
 
     		&:visited {
     			color: $main_blue;
