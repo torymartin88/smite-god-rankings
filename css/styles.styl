@@ -297,10 +297,7 @@ input[type='radio'] {
 
 
 .main {
-	height: calc(100vh - 60px);
-	overflow: hidden;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	
 }
 
 
@@ -355,37 +352,35 @@ input[type='radio'] {
 }
 
 .scrollbarBin {
-	.viewport {
-		height: calc(100vh - 335px);
-		overflow: hidden;
-    	position: relative;
-    	margin-left: 17px;
-    	margin-top: 5px;
-	}
+	height: calc(100vh - 330px);
+	position: relative;
+	margin-top: 5px;
 
 	.overview {
-		list-style: none;
-	    position: absolute;
-	    left: 0;
-	    top: 0;
-	    padding: 0;
-	    margin: 0 !important;
+		width: 100%;
+		height: 100%;
+		padding-top: 0;
+		padding-bottom: 0;
+		padding-left: 17px;
+		margin-top: 0 !important;
 	}
 
-	.scrollbar {
-		width: 13px;
+	.ps-scrollbar-y-rail {
+		background: #213B46 !important;
 	}
 
-	.track {
-		background: #213B46;
-		width: 6px;
+	.ps-scrollbar-y {
+		background: #49798E !important;
 	}
+}
 
-	.thumb {
-	    background: #386071;
-	    border: none;
-	    width: 6px;
-	    left: 0;
+.scrollbarList {
+	height: calc(100vh - 40px);
+	position: relative;
+
+	.tier-list {
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
 }
 

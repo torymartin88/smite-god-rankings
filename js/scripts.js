@@ -34,8 +34,11 @@ emptyNode.classList.add('god-icon');
 emptyNode.classList.add('empty');
 emptyNode.draggable = false;
 
-scrollbarList = tinyscrollbar(document.getElementById("scrollbarList"));
-scrollbarBin = tinyscrollbar(document.getElementById("scrollbarBin"));
+var scrollbarListEl = document.getElementById("scrollbarList");
+var scrollbarBinEl = document.getElementById("scrollbarBin");
+
+scrollbarList = Ps.initialize(scrollbarListEl);
+scrollbarBin = Ps.initialize(scrollbarBinEl);
 
 // Load Gods
 var request = new XMLHttpRequest();
@@ -731,15 +734,15 @@ function colorsChange(e) {
 function updateScrollBars() {
 	var binContentPosition = 0, listContentPosition = 0;
 
-	try {
-		binContentPosition = scrollbarBin.contentPosition;
-		listContentPosition = scrollbarList.contentPosition;
-	} catch (e) {
-		console.log(e);
-	}
+	// try {
+	// 	binContentPosition = scrollbarBin.contentPosition;
+	// 	listContentPosition = scrollbarList.contentPosition;
+	// } catch (e) {
+	// 	console.log(e);
+	// }
 
-	scrollbarBin.update(binContentPosition);
-	scrollbarList.update(listContentPosition);
+	// scrollbarBin.update(binContentPosition);
+	// scrollbarList.update(listContentPosition);
 }
 
 /* Utils */
