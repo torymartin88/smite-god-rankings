@@ -12,8 +12,6 @@ var dragSrcRowID = null;
 var dragEnterSrcEl = null;
 var activeGroup = null;
 var lastActiveGroup = null;
-var activeRow = null;
-var lastActiveRow = null;
 var godsList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var scrollbarList, scrollbarBin;
 
@@ -184,12 +182,10 @@ var godIconEvents = {
 
 		e.dataTransfer.setData('god_id', this.id);
 		e.dataTransfer.effectAllowed = 'move';
-		// e.dataTransfer.setDragImage(this, 0, 0);
 		return true;
 	},
 
 	dragOver: function(e) {
-
 		if ( activeGroup != 'all' && dragSrcEl != this ) {
 			if (e.offsetX < iconHalfWidth && leftSide == false) {
 				leftSide = true;
@@ -262,6 +258,13 @@ var godIconEvents = {
 
 		dragSrcEl.classList.remove('dragger');
 
+
+		var group = document.getElementById(activeGroup);
+		var emptyEl = group.getElementsByClassName("empty")[0];
+
+		if (emptyEl)
+			group.removeChild(group.getElementsByClassName("empty")[0]);
+
 		return false;
 	},
 
@@ -309,21 +312,6 @@ var newIconEvents = {
 };
 
 
-var godRowEvents = {
-	dragEnter: function(e) {
-		if (this.id != activeRow) {
-			lastActiveRow = activeRow;
-			activeRow = this.id;
-		}
-
-		if (lastActiveRow == null)
-			lastActiveRow = activeRow;
-
-		return false;
-	}
-};
-
-
 var godGroupEvents = {
 	dragOver: function(e) {
 		if (e.preventDefault) {
@@ -352,6 +340,7 @@ var godGroupEvents = {
 
 		} else if (this.id == 'all') {
 			document.getElementById(activeGroup).classList.remove('over');
+			activeGroup = this.id;
 		}
 
 		return false;
@@ -364,7 +353,6 @@ var godGroupEvents = {
 
 	// Handle all dropping at this level
 	dragDrop: function(e) {
-
 		var groupEl;
 
 		// set dropped group element id
@@ -376,7 +364,7 @@ var godGroupEvents = {
 		if (e.stopPropagation)
 			e.stopPropagation();
 
-		if (activeGroup != 'all')
+		if (groupEl.id != 'all')
 			moveGod(groupEl);
 
 		return false;
@@ -408,10 +396,10 @@ var titleEvents = {
 
 
 function moveGod(group) {
+
 	// Remove hover and empty state box
-	if (group.getElementsByClassName("empty").length){
+	if (group.getElementsByClassName("empty").length)
 		group.removeChild(group.getElementsByClassName("empty")[0]);
-	}
 
 	lastActiveGroup = dragSrcEl.parentNode.id;
 	// activeGroup = group;
@@ -620,7 +608,6 @@ function setDefaults() {
 	var tierList = document.getElementsByClassName('tier-list')[0]
 	var colors = localStorage.getItem('smitetierlist_colors');
 
-	console.log(colors);
 	if (colors == 'true') {
 		tierList.classList.add('colors');
 		document.getElementById('js--colors-cb').setAttribute('checked', true);
@@ -665,7 +652,6 @@ function searchGods(e) {
 
 	var hiddenIcons = 0;
 
-	console.log(icons.length);
 	[].forEach.call(icons, function(icon) {
 		if (icon.id.toLowerCase().replace(/\s+/g, '').indexOf(searchTerm) == -1 && icon.getAttribute('data-type').toLowerCase().replace(/\s+/g, '').indexOf(searchTerm) == -1) {
 			icon.classList.add('hide');
@@ -675,7 +661,6 @@ function searchGods(e) {
 		}
 	});
 
-	console.log
 	if (hiddenIcons == icons.length)
 		document.getElementById('js--no-gods-left').classList.remove('hide');
 	else
