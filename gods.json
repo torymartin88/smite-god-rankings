@@ -455,24 +455,31 @@
     "short_id":"65"
   },
   {
+    "id":"Xing_Tian",
+    "name":"Xing Tian",
+    "filename":"Xing Tian.jpg",
+    "type":"Guardian",
+    "short_id":"66"
+  },
+  {
     "id":"Ymir",
     "name":"Ymir",
     "filename":"Ymir.jpg",
     "type":"Guardian",
-    "short_id":"66"
+    "short_id":"67"
   },
   {
     "id":"Zeus",
     "name":"Zeus",
     "filename":"Zeus.jpg",
     "type":"Mage",
-    "short_id":"67"
+    "short_id":"68"
   },
   {
     "id":"Zhong_Kui",
     "name":"Zhong Kui",
     "filename":"Zhong Kui.jpg",
     "type":"Mage",
-    "short_id":"68"
+    "short_id":"69"
   }
 ]

@@ -46,6 +46,13 @@
 
 	<div class="main scrollbarList" id="scrollbarList">
 		<div class="tier-list">
+			<div class="title-row">
+				<label>List Title</label>
+				<input type="text" class="god-search" id="js--list-title" placeholder="Enter a title for your list..."/>
+
+				<span class="published-date"><span>Published: </span><span id="js--list-date">-</span></span>
+			</div>
+
 			<div class="view-selection">
 				<span class="view-selection-item view-item-standard" id="js--view-standard">Standard</span>
 				<span class="view-selection-item view-item-compact" id="js--view-compact">Compact</span>
@@ -140,6 +147,7 @@
 		ga('send', 'pageview');
 	</script>
 
+	<script src="js/vendor/moment.min.js"></script>
 	<script src="js/vendor/perfect-scrollbar.js"></script>
  	<script src="js/scripts.min.js"></script>
 </body>

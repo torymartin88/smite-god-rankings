@@ -92,6 +92,8 @@ function loadFromCache() {
 		try {
 			firebaseListCache.child(queryStr).once('value', function(snapshot) {
 				temp = snapshot.val().list;
+				listName = snapshot.val().name;
+				created = snapshot.val().created;
 
 				for (var key in temp) {
 				   	if (temp.hasOwnProperty(key)) {
@@ -114,7 +116,13 @@ function loadFromCache() {
 
 				equalHeightColumns();
 
-				document.getElementById('js--no-gods-left').classList.remove('hide');
+				// set title
+				document.getElementById('js--list-title').value = listName;
+				document.getElementById('js--list-date').innerHTML = moment(created).format("dddd, MM/DD/YY");
+
+				if (document.getElementById('all').getElementsByClassName('god-icon').length == 0)
+					document.getElementById('js--no-gods-left').classList.remove('hide');
+
 				document.getElementById('js--loading').classList.add('hide');
 			});
 		} catch (err) {
@@ -124,6 +132,7 @@ function loadFromCache() {
 	} else if (localStore != null) {
 		try {
 			godsListCache = JSON.parse(localStore);
+			godsListTitle = localStorage.getItem('godsListTitle', godsListTitle);
 
 			[].forEach.call(godsListCache, function(group, i) {
 				if (group.length != 0) {
@@ -142,6 +151,8 @@ function loadFromCache() {
 			}
 
 			equalHeightColumns();
+
+			document.getElementById('js--list-title').value = godsListTitle;
 			document.getElementById('js--loading').classList.add('hide');
 		} catch (err) {
 			console.log(err);
@@ -598,6 +609,7 @@ function addEventListeners() {
 	document.getElementById('js--reset-page').addEventListener('click', resetPage, false);
 	document.getElementById('js--publish').addEventListener('click', publishPage, false);
 	document.getElementById('js--search-gods').addEventListener('keyup', searchGods, false);
+	document.getElementById('js--list-title').addEventListener('keyup', listTitleChange, false);
 	document.getElementById('js--menu-trigger').addEventListener('click', menuTriggerClick, false);
 	document.getElementById('js--view-standard').addEventListener('click', viewClick, false);
 	document.getElementById('js--view-compact').addEventListener('click', viewClick, false);
@@ -642,7 +654,8 @@ function resetPage(e) {
 }
 
 function publishPage(e) {
-	var key = firebaseListCache.push({name: 'test', created: Firebase.ServerValue.TIMESTAMP, list: godsListCache}).key();
+	var listName = document.getElementById('js--list-title').value;
+	var key = firebaseListCache.push({name: listName, created: Firebase.ServerValue.TIMESTAMP, list: godsListCache}).key();
 	document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?key=' + key;
 }
 
@@ -667,6 +680,10 @@ function searchGods(e) {
 		document.getElementById('js--no-gods-left').classList.add('hide');
 
 	updateScrollBars();
+}
+
+function listTitleChange(e) {
+	localStorage.setItem('godsListTitle', this.value);
 }
 
 function menuTriggerClick(e) {
