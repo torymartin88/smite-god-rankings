@@ -658,7 +658,7 @@ function publishPage(e) {
 	var key = firebaseListCache.push({name: listName, created: Firebase.ServerValue.TIMESTAMP, list: godsListCache}).key();
 	document.getElementById('publish_id').value = 'http://smitegodrankings.com/index.html?key=' + key;
 
-	document.getElementById('js--publish').addAttribute('disabled');
+	document.getElementById('js--publish').addAttribute('disabled', true);
 }
 
 function searchGods(e) {
