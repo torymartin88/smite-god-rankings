@@ -392,6 +392,13 @@
     "short_id":"56"
   },
   {
+    "id":"Sol",
+    "name":"Sol",
+    "filename":"Sol.jpg",
+    "type":"Mage",
+    "short_id":"70"
+  },
+  {
     "id":"Sun_Wukong",
     "name":"Sun Wukong",
     "filename":"Sun Wukong.jpg",
