@@ -140,6 +140,13 @@
     "short_id":"20"
   },
   {
+    "id":"Chiron",
+    "name":"Chiron",
+    "filename":"Chiron.jpg",
+    "type":"Hunter",
+    "short_id":"70"
+  },
+  {
     "id":"Chronos",
     "name":"Chronos",
     "filename":"Chronos.jpg",
