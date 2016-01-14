@@ -21,6 +21,13 @@
     "short_id":"3"
   },
   {
+    "id":"Amaterasu",
+    "name":"Amaterasu",
+    "filename":"Amaterasu.jpg",
+    "type":"Warrior",
+    "short_id":"71"
+  },
+  {
     "id":"Anhur",
     "name":"Anhur",
     "filename":"Anhur.jpg",
