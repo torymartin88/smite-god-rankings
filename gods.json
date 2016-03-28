@@ -364,6 +364,13 @@
     "short_id":"50"
   },
   {
+    "id":"Raijin",
+    "name":"Raijin",
+    "filename":"Raijin.jpg",
+    "type":"Mage",
+    "short_id":"72"
+  },
+  {
     "id":"Rama",
     "name":"Rama",
     "filename":"Rama.jpg",
@@ -397,6 +404,13 @@
     "filename":"Serqet.jpg",
     "type":"Assassin",
     "short_id":"55"
+  },
+  {
+    "id":"Skadi",
+    "name":"Skadi",
+    "filename":"Skadi.jpg",
+    "type":"Hunter",
+    "short_id":"73"
   },
   {
     "id":"Sobek",
