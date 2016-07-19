@@ -168,6 +168,20 @@
     "short_id":"22"
   },
   {
+    "id":"Erlang_Shen",
+    "name":"Erlang Shen",
+    "filename":"Erlang Shen.jpg",
+    "type":"Warrior",
+    "short_id":"73"
+  },
+  {
+    "id":"Fafnir",
+    "name":"Fafnir",
+    "filename":"Fafnir.jpg",
+    "type":"Guardian",
+    "short_id":"72"
+  },
+  {
     "id":"Fenrir",
     "name":"Fenrir",
     "filename":"Fenrir.jpg",
@@ -250,6 +264,13 @@
     "filename":"Janus.jpg",
     "type":"Mage",
     "short_id":"34"
+  },
+  {
+    "id":"Jing Wei",
+    "name":"Jing Wei",
+    "filename":"Jing Wei.jpg",
+    "type":"Hunder",
+    "short_id":"71"
   },
   {
     "id":"Kali",
@@ -432,6 +453,13 @@
     "filename":"Sun Wukong.jpg",
     "type":"Warrior",
     "short_id":"57"
+  },
+  {
+    "id":"Susano",
+    "name":"Susano",
+    "filename":"Susano.jpg",
+    "type":"Assassin",
+    "short_id":"70"
   },
   {
     "id":"Sylvanus",
