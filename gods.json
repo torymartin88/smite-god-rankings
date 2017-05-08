@@ -133,6 +133,20 @@
     "short_id":"18"
   },
   {
+    "id":"Camazotz",
+    "name":"Camazotz",
+    "filename":"Camazotz.png",
+    "type":"Assassin",
+    "short_id":"18x"
+  },
+  {
+    "id":"Cernunnos",
+    "name":"Cernunnos",
+    "filename":"Cernunnos.png",
+    "type":"Hunter",
+    "short_id":"18x"
+  },
+  {
     "id":"Chaac",
     "name":"Chaac",
     "filename":"Chaac.jpg",
@@ -194,6 +208,13 @@
     "filename":"Freya.jpg",
     "type":"Mage",
     "short_id":"24"
+  },
+  {
+    "id":"Ganesha",
+    "name":"Ganesha",
+    "filename":"Ganesha.png",
+    "type":"Guardian",
+    "short_id":"25x"
   },
   {
     "id":"Geb",
@@ -259,6 +280,13 @@
     "short_id":"33"
   },
   {
+    "id":"Izanami",
+    "name":"Izanami",
+    "filename":"Izanami.png",
+    "type":"Hunter",
+    "short_id":"33x"
+  },
+  {
     "id":"Janus",
     "name":"Janus",
     "filename":"Janus.jpg",
@@ -301,6 +329,13 @@
     "short_id":"38"
   },
   {
+    "id":"Kuzenbo",
+    "name":"Kuzenbo",
+    "filename":"Kuzenbo.png",
+    "type":"Guardian",
+    "short_id":"38x"
+  },
+  {
     "id":"Loki",
     "name":"Loki",
     "filename":"Loki.jpg",
@@ -341,6 +376,13 @@
     "filename":"Nemesis.jpg",
     "type":"Assassin",
     "short_id":"44"
+  },
+  {
+    "id":"Nike",
+    "name":"Nike",
+    "filename":"Nike.png",
+    "type":"Warrior",
+    "short_id":"44x"
   },
   {
     "id":"Nox",
@@ -469,6 +511,13 @@
     "short_id":"58"
   },
   {
+    "id":"Terra",
+    "name":"Terra",
+    "filename":"Terra.png",
+    "type":"Guardian",
+    "short_id":"59x"
+  },
+  {
     "id":"Thanatos",
     "name":"Thanatos",
     "filename":"Thanatos.jpg",
@@ -476,11 +525,25 @@
     "short_id":"59"
   },
   {
+    "id":"The_Morrigan",
+    "name":"The Morrigan",
+    "filename":"The Morrigan.png",
+    "type":"Mage",
+    "short_id":"59x"
+  },
+  {
     "id":"Thor",
     "name":"Thor",
     "filename":"Thor.jpg",
     "type":"Assassin",
     "short_id":"60"
+  },
+  {
+    "id":"Thoth",
+    "name":"Thoth",
+    "filename":"Thoth.png",
+    "type":"Mage",
+    "short_id":"60x"
   },
   {
     "id":"Tyr",
